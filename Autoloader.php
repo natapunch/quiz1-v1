@@ -9,6 +9,16 @@ class Autoloader
      * @var array   Namespace mapping
      */
     protected static $ns_map = [];
+    public static $instance=null;
+    public static function getInstance()
+    {
+        //check if initialized
+        if (self::$instance == null) {
+            //init
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
 
     /**
      * Autoloader constructor.
@@ -17,7 +27,10 @@ class Autoloader
     {
         spl_autoload_register([$this, 'load']);
     }
+public function __clone()
+{
 
+}
     /**
      * Register namespace root path
      *
@@ -63,4 +76,4 @@ class Autoloader
     }
 }
 
-new Autoloader();
+Autoloader::getInstance();
