@@ -8,7 +8,12 @@ namespace Model;
 abstract class AbstractPost implements Renderable
 {
     protected $options = [];
-    public function __construct($options)
+
+    /**
+     * AbstractPost constructor.
+     * @param array $options
+     */
+    public function __construct(array $options)
     {
         $this->options = $options;
     }

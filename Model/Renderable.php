@@ -1,12 +1,17 @@
 <?php
-/**
- * 
- */
 
 namespace Model;
 
+/**
+ * Interface Renderable
+ * @package Model
+ */
 
 interface Renderable
 {
-    function render();
+    /**
+     * Returns object in string type
+     * @return string
+     */
+    function render (): string;
 }

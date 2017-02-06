@@ -1,7 +1,7 @@
 <?php
 
 /**
- *Exception Not Found Class
+ *Exception : if class not found
  */
 namespace Exceptions;
 

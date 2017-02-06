@@ -1,24 +1,23 @@
 <?php
-use Model\Renderable;
+use Model\AbstractPost;
 use Exceptions\ClassNotFoundException;
 use Exceptions\InvalidPostKeyException;
 
-
 /**
- *
+ *Fabric
+ * class PostCreator
  */
-
 class PostCreator
 {
-    public static $instance=null;
-    public $options=[];
+    public static $instance = null;
+    public $options = [];
 
-	/**
+    /**
      * @return null|PostCreator
      */
-    public static function getInstance()
+    public static function getInstance():self
     {
-        if (null===self::$instance) {
+        if (null === self::$instance) {
             //Объект создается в первый раз
             self::$instance = new self();
         }
@@ -37,21 +36,21 @@ class PostCreator
     /**
      * @param string $className
      * @param array $options
-     * @return Renderable
+     * @return AbstractPost
      * @throws ClassNotFoundException
      * @throws InvalidPostKeyException
      */
-    static function make(string $className, array $options): Model\Renderable
- {
- 		$namespacePaths = include 'config.php';
- 		if (array_key_exists($className, $namespacePaths)) {
- 			if (class_exists($namespacePaths[$className])) {
- 				return new $namespacePaths[$className]($options);
- 			} else {
-    				throw new ClassNotFoundException("Class " . $className . " is not found!");
- 			}
-		} else {
-    			throw new InvalidPostKeyException("Key " . $className . " is incorrect!");
- 		}
- 	}
+    static function make (string $className, array $options): Model\AbstractPost
+    {
+        $namespacePaths = include 'config.php';
+        if (array_key_exists($className, $namespacePaths)) {
+            if (class_exists($namespacePaths[$className])) {
+                return new $namespacePaths[$className]($options);
+            } else {
+                throw new ClassNotFoundException("Class " . $className . " is not found!");
+            }
+        } else {
+            throw new InvalidPostKeyException("Key " . $className . " is incorrect!");
+        }
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *
+ *If key not found
  */
 namespace Exceptions;
 
